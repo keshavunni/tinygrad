@@ -24,8 +24,8 @@ print(eval(compiled.asm['llir']).decode('utf-8'))
 
 print("running")
 size = 4
-x = torch.ones(size, device='cuda')
-y = torch.ones(size, device='cuda')
+x = torch.ones(size, device='cpu')
+y = torch.ones(size, device='cpu')
 output = torch.empty_like(x)
 out = compiled[(output.numel(),1,1)](output, x, y)
 print(output)
