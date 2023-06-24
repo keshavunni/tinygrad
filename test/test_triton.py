@@ -4,13 +4,13 @@ import triton.language as tl
 from triton.compiler import compile
 from triton.runtime import JITFunction
 
-def program(b0, b1, b2):
+def test_program(b0, b1, b2):
   idx = tl.program_id(0)
   x = tl.load(b1 + idx)
   y = tl.load(b2 + idx)
   tl.store(b0 + idx, x+y)
 
-program_jit = JITFunction(program)
+program_jit = JITFunction(test_program)
 
 
 # JITFunction(__main__:program) {'signature': {0: '*fp32', 1: '*fp32', 2: '*fp32'}, 'device': 0, 'constants': {}, 'num_warps': 4, 'num_stages': 3, 'extern_libs': None, 'configs': (instance_descriptor(divisible_by_16=(0, 1, 2), equal_to_1=()),)}
