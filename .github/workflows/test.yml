@@ -277,7 +277,6 @@ jobs:
         cache: 'pip'
         cache-dependency-path: setup.py
     - name: Install tinygrad dependencies
-      run: pip install -e '.[testing, cuda, triton]' --extra-index-url https://download.pytorch.org/whl/cu118
+      run: pip install -e '.[testing, cuda]' --extra-index-url https://download.pytorch.org/whl/cpu
     - name: Run pytest
-      run: FORWARD_ONLY=1 JIT=1 OPT=2 CUDA=1 CUDACPU=1 python -m pytest test/test_triton.py
-      # run: FORWARD_ONLY=1 JIT=1 OPT=2 CUDA=1 CUDACPU=1 python -m pytest -s -v -n=auto test --ignore=test/external --ignore=test/models --ignore=test/test_speed_v_torch.py --ignore=test/test_specific_conv.py --ignore=test/test_net_speed.py --ignore=test/test_nn.py -k "not half"
+      run: FORWARD_ONLY=1 JIT=1 OPT=2 CUDA=1 CUDACPU=1 python -m pytest -s -v -n=auto test --ignore=test/external --ignore=test/models --ignore=test/test_speed_v_torch.py --ignore=test/test_triton.py --ignore=test/test_specific_conv.py --ignore=test/test_net_speed.py --ignore=test/test_nn.py -k "not half"
